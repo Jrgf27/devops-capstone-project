@@ -38,6 +38,8 @@ def index():
 ######################################################################
 # CREATE A NEW ACCOUNT
 ######################################################################
+
+
 @app.route("/accounts", methods=["POST"])
 def create_accounts():
     """
@@ -60,7 +62,7 @@ def create_accounts():
 # LIST ALL ACCOUNTS
 ######################################################################
 
-# ... place you code here to LIST accounts ...
+
 @app.route("/accounts", methods=["GET"])
 def get_accounts():
     """
@@ -74,13 +76,11 @@ def get_accounts():
         jsonify([acc.serialize() for acc in list_of_accounts]), status.HTTP_200_OK
     )
 
-
-
 ######################################################################
 # READ AN ACCOUNT
 ######################################################################
 
-# ... place you code here to READ an account ...
+
 @app.route("/accounts/<int:account_id>", methods=["GET"])
 def read_account(account_id):
     """
@@ -101,7 +101,7 @@ def read_account(account_id):
 # UPDATE AN EXISTING ACCOUNT
 ######################################################################
 
-# ... place you code here to UPDATE an account ...
+
 @app.route("/accounts/<account_id>", methods=["PUT"])
 def update_account(account_id):
     """
@@ -119,13 +119,12 @@ def update_account(account_id):
     return make_response(
         jsonify(message), status.HTTP_200_OK
     )
-    
 
 ######################################################################
 # DELETE AN ACCOUNT
 ######################################################################
 
-# ... place you code here to DELETE an account ...
+
 @app.route("/accounts/<account_id>", methods=["DELETE"])
 def delete_account(account_id):
     """
