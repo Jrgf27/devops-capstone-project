@@ -127,42 +127,11 @@ class TestAccountService(TestCase):
     def test_list_accounts(self):
         """"It should return a list of all accounts"""
 
-        response = self.client.get(
-            BASE_URL,
-            content_type="application/json"
-        )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.get_json(), [])
-
-        account = AccountFactory()
-        response = self.client.post(
-            BASE_URL,
-            json=account.serialize(),
-            content_type="application/json"
-        )
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
-        response = self.client.get(
-            BASE_URL,
-            content_type="application/json"
-        )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.get_json()[0]['address'], account.address)
-
-        account = AccountFactory()
-        response = self.client.post(
-            BASE_URL,
-            json=account.serialize(),
-            content_type="application/json"
-        )
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
-        response = self.client.get(
-            BASE_URL,
-            content_type="application/json"
-        )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.get_json()), 2)
+        self._create_accounts(5)
+        resp = self.client.get(BASE_URL)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        data = resp.get_json()
+        self.assertEqual(len(data), 5)
 
     def test_read_account(self):
         """"It should return a detailed view of specific account"""

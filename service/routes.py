@@ -67,7 +67,6 @@ def get_accounts():
     This endpoint will return the list of all accounts in the database
     """
     app.logger.info("Request to retrieve account list")
-    check_content_type("application/json")
     account = Account()
     list_of_accounts = account.all()
 
@@ -88,7 +87,6 @@ def read_account(account_id):
     This endpoint will return a detailed view of a specific account
     """
     app.logger.info("Request to retrieve specific account")
-    check_content_type("application/json")
     account = Account()
     specific_account = account.find(account_id)
     if specific_account is None:
@@ -110,7 +108,6 @@ def update_account(account_id):
     This endpoint will update a specific account
     """
     app.logger.info("Request to update specific account")
-    check_content_type("application/json")
     account = Account()
     specific_account = account.find(account_id)
     if specific_account is None:
@@ -135,7 +132,6 @@ def delete_account(account_id):
     This endpoint will delete a specific account
     """
     app.logger.info("Request to delete specific account")
-    check_content_type("application/json")
     account = Account()
     specific_account = account.find(account_id)
     if specific_account is None:
