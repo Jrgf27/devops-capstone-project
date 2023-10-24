@@ -72,7 +72,7 @@ def get_accounts():
     list_of_accounts = account.all()
 
     return make_response(
-        jsonify(account_list =[acc.serialize() for acc in list_of_accounts]), status.HTTP_200_OK
+        jsonify([acc.serialize() for acc in list_of_accounts]), status.HTTP_200_OK
     )
 
 

@@ -132,7 +132,7 @@ class TestAccountService(TestCase):
             content_type="application/json"
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.get_json()['account_list'], [])
+        self.assertEqual(response.get_json(), [])
 
         account = AccountFactory()
         response = self.client.post(
@@ -147,7 +147,7 @@ class TestAccountService(TestCase):
             content_type="application/json"
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.get_json()['account_list'][0]['address'], account.address)
+        self.assertEqual(response.get_json()[0]['address'], account.address)
 
         account = AccountFactory()
         response = self.client.post(
@@ -162,7 +162,7 @@ class TestAccountService(TestCase):
             content_type="application/json"
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.get_json()['account_list']), 2)
+        self.assertEqual(len(response.get_json()), 2)
 
     def test_read_account(self):
         """"It should return a detailed view of specific account"""
